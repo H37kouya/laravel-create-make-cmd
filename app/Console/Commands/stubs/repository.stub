@@ -1,0 +1,17 @@
+<?php
+
+namespace DummyNamespace;
+
+use DummyNamespace\DummyClassInterface as RepositoryInterface;
+
+class DummyClass implements RepositoryInterface
+{
+    /**
+     * Create a new repository instance.
+     *
+     * @return void
+     */
+    public function __constuct()
+    {
+    }
+}
