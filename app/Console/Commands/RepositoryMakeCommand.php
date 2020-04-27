@@ -69,9 +69,11 @@ class RepositoryMakeCommand extends Command
 
         $this->files->put($path, $this->sortImports($this->buildClass($name)));
 
+        $this->info($this->type.' created successfully.');
+
         $this->call('make:repositoryInterface', [ 'name' => $this->getNameInput() . 'Interface' ]);
 
-        $this->info($this->type.' created successfully.');
+        $this->info($this->getInterfaceInfo($this->getNameInput()));
     }
 
     /**
@@ -93,5 +95,17 @@ class RepositoryMakeCommand extends Command
     protected function getDefaultNamespace($rootNamespace)
     {
         return $rootNamespace . '\Repositories';
+    }
+
+    /**
+     * Interfaceを追加するようにうながすメッセージを取得する
+     *
+     * @param string $className
+     * @return string
+     */
+    protected function getInterfaceInfo(string $className): string
+    {
+        $str = "\n\n".'$this->app->bind('."\n".'    '.$className.'Interface,'."\n".'    '.$className."\n".');';
+        return $str;
     }
 }
